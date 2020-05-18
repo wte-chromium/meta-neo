@@ -1,1 +1,1 @@
-# EOF BSP support for OpenPLi
+# EOL BSP support for OpenPLi

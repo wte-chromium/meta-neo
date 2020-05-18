@@ -18,10 +18,10 @@ MACHINE_KERNEL_PR_append = "oea4.1-r3"
 # By default, kernel.bbclass modifies package names to allow multiple kernels
 # to be installed in parallel. We revert this change and rprovide the versioned
 # package names instead, to allow only one kernel to be installed.
-PKG_kernel-base = "kernel-base"
-PKG_kernel-image = "kernel-image"
-RPROVIDES_kernel-base = "kernel-${KERNEL_VERSION}"
-RPROVIDES_kernel-image = "kernel-image-${KERNEL_VERSION}"
+PKG_${KERNEL_PACKAGE_NAME}-base = "kernel-base"
+PKG_${KERNEL_PACKAGE_NAME}-image = "kernel-image"
+RPROVIDES_${KERNEL_PACKAGE_NAME}-base = "kernel-${KERNEL_VERSION}"
+RPROVIDES_${KERNEL_PACKAGE_NAME}-image = "kernel-image-${KERNEL_VERSION}"
 
 SRC_URI += "http://source.mynonpublic.com/ceryon/ceryon-linux-${PV}-${ARCH}.tar.gz;name=${ARCH} \
     file://defconfig \
@@ -38,14 +38,6 @@ SRC_URI += "http://source.mynonpublic.com/ceryon/ceryon-linux-${PV}-${ARCH}.tar.
     file://v3-3-3-media-dvbsky-MyGica-T230C-support.patch \
     file://v3-3-4-media-dvbsky-MyGica-T230C-support.patch \
     file://v3-3-5-media-dvbsky-MyGica-T230C-support.patch \
-	file://kernel-add-support-for-gcc6.patch \
-	file://kernel-add-support-for-gcc7.patch \
-    "
-
-SRC_URI_append_arm = " \
-    file://findkerneldevice.py \
-    file://reserve_dvb_adapter_0.patch \
-    file://blacklist_mmc0.patch \
     "
 
 S = "${WORKDIR}/linux-${PV}"
@@ -60,15 +52,15 @@ KERNEL_OUTPUT_mips = "vmlinux"
 KERNEL_IMAGETYPE_mips = "vmlinux"
 KERNEL_IMAGEDEST_mips = "boot"
 
-FILES_kernel-image_mips = "/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}*"
+FILES_${KERNEL_PACKAGE_NAME}-image = "/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}*"
 
-kernel_do_install_append_mips() {
+kernel_do_install_append() {
 	${STRIP} ${D}/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}-${KERNEL_VERSION}
 	gzip -9c ${D}/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}-${KERNEL_VERSION} > ${D}/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}.gz
 	rm ${D}/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}-${KERNEL_VERSION}
 }
 
-pkg_postinst_kernel-image_mips () {
+pkg_postinst_kernel-image() {
 	if [ "x$D" == "x" ]; then
 		if [ -f /${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}.gz ] ; then
 			flash_erase /dev/mtd1 0 0
@@ -76,30 +68,6 @@ pkg_postinst_kernel-image_mips () {
 		fi
 	fi
 	true
-}
-
-# Linux ARM Models
-
-KERNEL_OUTPUT_arm = "arch/${ARCH}/boot/${KERNEL_IMAGETYPE}"
-KERNEL_IMAGETYPE_arm = "zImage"
-KERNEL_IMAGEDEST_arm = "tmp"
-
-FILES_kernel-image_arm = "/${KERNEL_IMAGEDEST}/zImage /${KERNEL_IMAGEDEST}/findkerneldevice.py"
-
-kernel_do_install_append_arm() {
-        install -d ${D}/${KERNEL_IMAGEDEST}
-        install -m 0755 ${KERNEL_OUTPUT} ${D}/${KERNEL_IMAGEDEST}
-        install -m 0755 ${WORKDIR}/findkerneldevice.py ${D}/${KERNEL_IMAGEDEST}
-}
-
-pkg_postinst_kernel-image_arm () {
-    if [ "x$D" == "x" ]; then
-        if [ -f /${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} ] ; then
-            python /${KERNEL_IMAGEDEST}/findkerneldevice.py
-            dd if=/${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE} of=/dev/kernel
-        fi
-    fi
-    true
 }
 
 do_rm_work() {
