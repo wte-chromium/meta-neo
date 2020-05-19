@@ -22,6 +22,12 @@ MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "\
     "
 
 #Provider
+PREFERRED_PROVIDER_virtual/egl ?= "nexttv-v3ddriver-${MACHINE}"
+PREFERRED_PROVIDER_virtual/libgles1 ?= "nexttv-v3ddriver-${MACHINE}"
+PREFERRED_PROVIDER_virtual/libgles2 ?= "nexttv-v3ddriver-${MACHINE}"
+PREFERRED_PROVIDER_virtual/libgbm ?= "nexttv-v3ddriver-${MACHINE}"
+PREFERRED_PROVIDER_virtual/libgl ?= "mesa"
+PREFERRED_PROVIDER_virtual/mesa ?= "mesa"
 PREFERRED_PROVIDER_virtual/kernel = "linux-nexttv"
 
 MACHINE_FEATURES += "alsa usbhost wlan 3dtv switchoff osdposition hdmicec"
@@ -30,6 +36,11 @@ MACHINE_EXTRA_RRECOMMENDS = " \
 	gst-plugin-dvbmediasink \
 	ntfs-3g \
 	"
+
+EXTRA_OECMAKE_append_pn-kodi += " -DWITH_V3D=nxclient"
+
+PACKAGECONFIG_GL_pn-qtbase = " "
+PACKAGECONFIG_append_pn-qtbase += " gles2 linuxfb"
 
 DVBMEDIASINK_CONFIG = "--with-h265 --with-vb8 --with-vb9 --with-wma --with-wmv --with-pcm --with-dts --with-eac3"
 

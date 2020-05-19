@@ -5,6 +5,7 @@ MACHINE_EXTRA_RDEPENDS += "\
 MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
 	kernel-module-cdfs \
 	${@bb.utils.contains('MACHINE_FEATURES', 'v3d-nxpl', 'et-v3ddriver-${MACHINE}' , '', d)} \
+	${@bb.utils.contains('MACHINE_FEATURES', 'v3d-nxclient', 'nexttv-v3ddriver-${MACHINE}' , '', d)} \
 	${@bb.utils.contains('MACHINE_FEATURES', 'micom', 'et-fpupdate-${MACHINE}' , '', d)} \
 	\
 	firmware-carl9170 \
