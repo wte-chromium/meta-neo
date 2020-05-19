@@ -14,7 +14,7 @@ KERNEL_MODULE_AUTOLOAD += "xfs"
 MACHINE_FEATURES_BACKFILL_CONSIDERED = "rtc"
 
 IMAGE_INSTALL_append += "\
-    initrd-${MACHINE} \
+    nexttv-initrd-${MACHINE} \
     "
 
 MACHINE_ESSENTIAL_EXTRA_RDEPENDS = "\

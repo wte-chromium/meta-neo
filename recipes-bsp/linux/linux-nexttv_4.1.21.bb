@@ -2,7 +2,7 @@ DESCRIPTION = "Linux kernel for ${MACHINE}"
 SECTION = "kernel"
 LICENSE = "GPLv2"
 
-COMPATIBLE_MACHINE = "et7000mini"
+COMPATIBLE_MACHINE = "et7000mini|xpeedc"
 
 KERNEL_RELEASE = "4.1.21"
 SRCDATE = "20160408"
@@ -22,7 +22,7 @@ PKG_${KERNEL_PACKAGE_NAME}-image = "kernel-image"
 RPROVIDES_${KERNEL_PACKAGE_NAME}-base = "kernel-${KERNEL_VERSION}"
 RPROVIDES_${KERNEL_PACKAGE_NAME}-image = "kernel-image-${KERNEL_VERSION}"
 
-SRC_URI += "http://gi-et.info/et7000mini/linux-${PV}.tar.xz \
+SRC_URI += "http://source.mynonpublic.com/xtrend/linux-${PV}.tar.xz \
 	file://kernel-add-support-for-gcc6.patch \
 	file://kernel-add-support-for-gcc7.patch \
 	file://kernel-add-support-for-gcc8.patch \

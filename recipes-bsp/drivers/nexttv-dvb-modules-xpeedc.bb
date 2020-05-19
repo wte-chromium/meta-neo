@@ -1,12 +1,12 @@
 KV = "4.1.21"
 SRCDATE = "20170424"
-GCC = "6.2.0"
+GCC = "6.3.0"
+
+SRC_URI = "http://source.mynonpublic.com/xtrend/${MACHINE}-drivers-${KV}-${GCC}-${SRCDATE}.zip"
 
 require nexttv-dvb-modules.inc
 
-SRC_URI = "http://xpeedlx.info/${MACHINE}-drivers-${KV}-${GCC}-${SRCDATE}.zip"
-
-SRC_URI[md5sum] = "798e12cfe57d2d982148dd01d88190a4"
-SRC_URI[sha256sum] = "97d970168713a43b53e9f0e80946e9acc594b05972c4a3ad68dc916c49f1d3cd"
+SRC_URI[md5sum] = "036d57fc2083cc4c5c0fb4046d45da52"
+SRC_URI[sha256sum] = "b54e83363ee5c03b18cc7c4a13bbe1d9b49c07835f1866c91a2ff31b5416c2e6"
 
 COMPATIBLE_MACHINE = "xpeedc"

@@ -2,7 +2,7 @@ KV = "4.4.8"
 SRCDATE = "20170424"
 GCC = "6.3.0"
 
-SRC_URI = "https://github.com/neo-pli-bsps/meta-xtrend/releases/download/Binaries-1.0/et8500-drivers-4.4.8-6.3.0-${SRCDATE}.zip"
+SRC_URI = "https://github.com/neo-pli-bsps/meta-xtrend/releases/download/Binaries-1.0/${MACHINE}-drivers-${KV}-${GCC}-${SRCDATE}.zip"
 
 require nexttv-dvb-modules.inc
 

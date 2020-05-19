@@ -1,15 +1,11 @@
 MACHINE_EXTRA_RDEPENDS += "\
-	${@bb.utils.contains('MACHINE_FEATURES', 'hbbtv', 'enigma2-plugin-extensions-hbbtv-${MACHINE}' , '', d)} \
+	${@bb.utils.contains('MACHINE_FEATURES', 'broadmedia-hbbtv', 'enigma2-plugin-extensions-hbbtv-${MACHINE}' , '', d)} \
 	"
 
 MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
 	kernel-module-cdfs \
 	${@bb.utils.contains('MACHINE_FEATURES', 'v3d-nxpl', 'et-v3ddriver-${MACHINE}' , '', d)} \
 	${@bb.utils.contains('MACHINE_FEATURES', 'micom', 'et-fpupdate-${MACHINE}' , '', d)} \
-	${@bb.utils.contains('MACHINE_FEATURES', 'nexttv-blindscan-dvbc', 'nexttv-blindscanc-utils-${MACHINE}' , '', d)} \
-	${@bb.utils.contains('MACHINE_FEATURES', 'ceryon-blindscan-dvbc', 'ceryon-blindscanc-utils-${MACHINE}' , '', d)} \
-	${@bb.utils.contains('MACHINE_FEATURES', 'ceryon-blindscan-dvbs', 'ceryon-blindscans-utils-${MACHINE}' , '', d)} \
-	${@bb.utils.contains('MACHINE_FEATURES', 'broadmedia-blindscan-dvbc', 'broadmedia-blindscanc-utils-${MACHINE}' , '', d)} \
 	\
 	firmware-carl9170 \
 	firmware-rt2870 \

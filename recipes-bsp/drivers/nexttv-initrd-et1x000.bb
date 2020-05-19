@@ -1,6 +1,6 @@
 SRCDATE = "20170302"
 
-require initrd.inc
+require nexttv-initrd.inc
 
 do_install() {
     install -d ${D}/boot
