@@ -3,7 +3,7 @@ SECTION = "kernel"
 LICENSE = "GPLv2"
 
 KERNEL_RELEASE = "4.10.6"
-COMPATIBLE_MACHINE = "^(formuler1|formuler3|formuler4|formuler4turbo)$"
+COMPATIBLE_MACHINE = "^(formuler1|formuler3|formuler4|formuler4turbo|vipert2c|vipercombo|vipercombohdd|viperslim)$"
 MACHINE_KERNEL_PR_append = ".0"
 
 SRC_URI[md5sum] = "e5d32dd03b742e6101fde917dcba837d"
