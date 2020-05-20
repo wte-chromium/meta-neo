@@ -30,5 +30,6 @@ MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS = "\
 	kernel-module-zd1211rw \
 	kernel-module-ath9k-htc \
 	\
+	${@bb.utils.contains('MACHINE_FEATURES', 'spycat', 'kernel-module-hci-uart kernel-module-r8723bs firmware-dvb-demod-mn88472 firmware-dvb-demod-mn88473' , '', d)} \
 	${@bb.utils.contains('MACHINE_FEATURES', 'wifi-kernel4-4', 'firmware-rtl8192eu firmware-rtl8188eu firmware-rtl8xxxu firmware-mt7601u kernel-module-r8188eu kernel-module-8192eu kernel-module-mt7601u kernel-module-rtl8xxxu' , '', d)} \
 	"
