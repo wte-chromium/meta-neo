@@ -6,7 +6,10 @@ LICENSE = "CLOSED"
 PV = "${KV}+${SRCDATE}"
 PR = "r0"
 
-RDEPENDS_${PN} += "spycat-firmware-mn8847x"
+RDEPENDS_${PN} += "\
+	firmware-dvb-demod-mn88472 \
+	firmware-dvb-demod-mn88473 \
+	"
 
 SRC_URI = "https://github.com/open-spycat/spycat-driver/releases/download/${SRCDATE}/${MACHINE}-drivers-${KV}-${SRCDATE}.zip"
 
